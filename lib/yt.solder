@@ -64,7 +64,7 @@ Tmpl page
                 min-width: 0px;
             }
         </style>
-        <script src="lib/jquery-3.7.1.slim.min.js"></script>
+        <script src="assets/jquery-3.7.1.slim.min.js"></script>
         <script>
             jQuery(function(){
             
