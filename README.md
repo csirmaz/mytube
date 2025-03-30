@@ -19,7 +19,7 @@ Ideal to provide a safe, local space for kids to explore.
 ## Deployment
 
 1. Choose a location for the code, and copy the files in this repository there. This can be the same as your video directory.
-2. Configure the webserver to expose this location. This will be where the web interface can be accessed.
+2. Configure the webserver to expose this location. This will be where the web interface can be accessed. Ideally, deny access to the `lib/` folder.
 3. Choose a location for the videos, and set `$BASEDIR` in `index.php` to this location.
 4. Configure the webserver to expose this location, too (if different from the code location), and add the base URL to `$BASEURL`.
 5. Add a random string to `$SIGN_SALT`.
