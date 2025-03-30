@@ -1,0 +1,17 @@
+Tmpl -- Test file for the Solder templating tool
+
+Tmpl hello en
+  Hello
+
+Tmpl hello fr
+  Bonjour
+
+Tmpl test_one
+  {/<hello/} world!
+
+Tmpl test_two
+  Catch a <span title="{/explanation:q/}">{/animal:h/}</span> by the {/appendix:h/}
+
+Tmpl test_three
+  JavaScript: "{/data:js/}"
+ JSON      : "{/data:json/}"

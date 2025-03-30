@@ -1,0 +1,123 @@
+Tmpl -- mytube templates. See the documentation in Solder.php
+
+Tmpl page
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MyTube</title>
+
+        <style type="text/css">
+            body {
+                font-family: Helvetica, Arial;
+            }
+        
+            .item {
+                display: inline-block;
+                position: relative;
+                margin: 5px;
+                overflow: hidden;
+            }
+            
+            .item a {
+                display: block;
+                min-height: 80px;
+                min-width: 80px;
+            }
+            
+            .item img {
+                display: block;
+                max-width: 100%;
+                max-height: 15rem;
+            }
+            
+            .item .label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: #000;
+                opacity: 0.7;
+                color: #fff;
+                font-size: 140%;
+                padding: 2px;
+            }
+            
+            .item .name {
+                word-break: break-word;
+            }
+                        
+            .item.dir {
+                border:2px solid #009;
+                background: #77c;
+            }
+
+            .item.file {
+                border:2px solid #090;jquery-3.7.1.slim.min.js
+                background: #7c7;
+            }
+
+            .item.image {
+                border:2px solid #ddd;
+            }
+            .item.image a.loaded {
+                min-width: 0px;
+            }
+        </style>
+        <script src="lib/jquery-3.7.1.slim.min.js"></script>
+        <script>
+            jQuery(function(){
+            
+                // Lazy-load thumbnails one by one
+                var list = jQuery(".item.image a");
+                var ix = 0;
+                var loadimg = function(){
+                    if(ix >= list.length){ return; }
+                    var obj = jQuery(list.get(ix));
+                    var myimg = new Image();
+                    myimg.onload = function(){ 
+                        ix++; 
+                        obj.addClass('loaded');
+                        setTimeout(loadimg, 1);
+                    };
+                    myimg.src = obj.data('thumb');
+                    obj.find('.imagec').append(myimg);
+                };
+                loadimg();
+                
+            });            
+        </script>
+    </head>
+    <body>
+        <h1>MyTube {/title:h/}</h1>
+        
+        {/body/}
+    </body>
+    </html>
+
+Tmpl thumburl
+?t={/path:u/}&s={/signature:u/}
+    
+Tmpl dirurl
+?p={/path:u/}&s={/signature:u/}
+
+Tmpl desct
+<span class="label">
+    <span class="name">{/labelname:h/}</span>
+</span>
+
+Tmpl image
+    <div class="item image {/cssclass:q/}">
+        <a 
+            data-thumb="{/thumburl:q/}" 
+            href="{/fullimageurl:q/}"
+            target="viewer"
+        ><span class="imagec"></span>{/<desct/}</a>
+    </div>
+
+Tmpl dir
+    <div class="item dir">
+        <a 
+            href="{/url:q/}" 
+        >{/<desct/}</a>
+    </div>
